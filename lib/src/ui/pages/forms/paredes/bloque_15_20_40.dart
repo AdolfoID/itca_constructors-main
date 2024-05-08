@@ -166,9 +166,9 @@ class _ParedesBloque152040State extends State<ParedesBloque152040>
                        
                          title: "Proporción",
                         items: const [
-                          "1:3",
+                          "1:6",
                         ],
-                        value: "1:3",
+                        value: "1:6",
                         onChanged: (value) {},
                       ),
                       const SizedBox(
