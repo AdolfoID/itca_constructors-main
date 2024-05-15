@@ -60,11 +60,9 @@ class _MamposteriaBloquesPageState extends State<MamposteriaBloquesPage>
 
   List<String> get proporciones => [
         if (bloqueSize == BloqueSize.s20x20x40 ||
-            bloqueSize == BloqueSize.s10x20x40)
+            bloqueSize == BloqueSize.s10x20x40 ||
+            bloqueSize == BloqueSize.s15x20x40)
           "1:6",
-        if (bloqueSize == BloqueSize.s15x20x40 ||
-            bloqueSize == BloqueSize.s10x20x40)
-          "1:7",
         if (bloqueSize == BloqueSize.s20x20x40) "1:8",
       ];
 
@@ -449,7 +447,7 @@ class _MamposteriaBloquesPageState extends State<MamposteriaBloquesPage>
         materialValor: solera,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoAlbanileriaTipoS,
+          PriceItem.bloqueSolera10x20x40,
         ),
       ),
     );
