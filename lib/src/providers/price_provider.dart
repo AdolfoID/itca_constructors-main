@@ -174,7 +174,7 @@ class PriceProvider extends ChangeNotifier {
           }
         case PriceItem.ladrillo25x25: // LADRILLO DE CEMENTO 25X25
           if (!_prefs.containsKey(key)) {
-            _prefs.setString(key, "0.60");
+            _prefs.setString(key, "0.63");
           }
           break;
       }

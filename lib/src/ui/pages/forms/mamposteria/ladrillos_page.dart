@@ -66,7 +66,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
       case LadrillosType.trinchera:
         return "Mampostería de ladrillos de trinchera";
       case LadrillosType.lazoDeCanto:
-        return "Mampostería de ladrillos de lado de lazo";
+        return "Mampostería de ladrillos de puesto de canto";
     }
   }
 

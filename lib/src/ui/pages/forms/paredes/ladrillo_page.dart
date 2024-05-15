@@ -150,11 +150,11 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
       MamposteriaBloqueResultModel(
         descripcion: "Ladrillos",
         unidad: "UN",
-        constante: 46.0.d,
+        constante:0.46.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrillo25x25,
         ),
       ),
     );
@@ -167,7 +167,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -220,7 +220,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrillo25x25,
         ),
       ),
     );
