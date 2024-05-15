@@ -46,7 +46,7 @@ class _MamposteriaPiedraPageState extends State<MamposteriaPiedraPage>
 
   List<String> get proporciones => [
         "1:3",
-        "1:6",
+        "1:4",
       ];
 
   String get title => widget.title;

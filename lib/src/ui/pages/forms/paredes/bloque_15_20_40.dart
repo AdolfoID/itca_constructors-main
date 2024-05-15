@@ -240,6 +240,7 @@ class _ParedesBloque152040State extends State<ParedesBloque152040>
         ),
       ),
     );
+   
 
     final concretoSolera = ResultDataForPdfModel(
       items: items,

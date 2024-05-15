@@ -19,4 +19,6 @@ class BloqueResultModel extends ResultItem {
         materialValor * constante * (desperdicioLadrillos + Decimal.one);
     return result;
   }
+
 }
+

@@ -45,13 +45,13 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     proporcion = proporciones.first;
   }
 
-  List<String> get proporciones => [ "1:3",
+  List<String> get proporciones => [ "1:5",
        
       ];
 
   String get title {
     
-        return "Pared de mamposteria de ladrillo de obra puesta de lazo";
+        return "Pared de mamposteria de ladrillo de obra puesto de lazo";
    
   }
 
@@ -150,7 +150,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
       MamposteriaBloqueResultModel(
         descripcion: "Ladrillos",
         unidad: "UN",
-        constante: 46.0.d,
+        constante:0.46.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
@@ -167,7 +167,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -220,7 +220,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrillo25x25,
         ),
       ),
     );
