@@ -31,6 +31,7 @@ enum PriceItem {
   acero1,
   bloqueSolera10x20x40,
   bloqueSolera15x20x40,
+  bloqueSolera20x20x40,
 }
 String toCamelCase(String str) {
   return str.toLowerCase().split(' ').map((word) {
@@ -186,6 +187,10 @@ class PriceProvider extends ChangeNotifier {
            case PriceItem.bloqueSolera15x20x40: // SOLERA 15X20X40
           if (!_prefs.containsKey(key)) {
             _prefs.setString(key, "0.82");
+          }
+          case PriceItem.bloqueSolera20x20x40: // SOLERA 20X20X40
+          if (!_prefs.containsKey(key)) {
+            _prefs.setString(key, "1.15");
           }
           break;
       }
