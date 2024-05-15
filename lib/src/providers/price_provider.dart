@@ -32,6 +32,7 @@ enum PriceItem {
   bloqueSolera10x20x40,
   bloqueSolera15x20x40,
   bloqueSolera20x20x40,
+  ladrilloBarroCocido,
 }
 String toCamelCase(String str) {
   return str.toLowerCase().split(' ').map((word) {
@@ -192,7 +193,12 @@ class PriceProvider extends ChangeNotifier {
           if (!_prefs.containsKey(key)) {
             _prefs.setString(key, "1.15");
           }
+          case PriceItem.ladrilloBarroCocido: // Ladrillo barro cocido
+          if (!_prefs.containsKey(key)) {
+            _prefs.setString(key, "0.35");
+          }
           break;
+          
       }
     }
   }

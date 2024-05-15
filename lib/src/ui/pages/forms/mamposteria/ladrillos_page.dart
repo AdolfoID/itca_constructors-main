@@ -39,7 +39,6 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
   final formKey = GlobalKey<FormState>();
   final largoText = TextEditingController();
   final altoText = TextEditingController();
-  final baseText = TextEditingController();
 
   final desperdicioText = TextEditingController();
   String proporcion = '';
@@ -103,10 +102,6 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
                     child: Column(
                       children: [
                         TextFieldWidget(
-                          label: "Base",
-                          controller: baseText,
-                        ),
-                        TextFieldWidget(
                           label: "Altura",
                           controller: altoText,
                         ),
@@ -168,24 +163,24 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
       MamposteriaBloqueResultModel(
         descripcion: "Ladrillos",
         unidad: "UN",
-        constante: 46.0.d,
+        constante: 25.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrilloBarroCocido,
         ),
       ),
     );
 
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO PORTLAND TIPO 1",
+        descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
-        constante: 0.13.d,
+        constante: 0.065.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -245,13 +240,13 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
 
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO PORTLAND TIPO 1",
+        descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
         constante: 0.065.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -311,13 +306,13 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
 
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO PORTLAND TIPO 1",
+        descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
         constante: 0.385.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -359,8 +354,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     if (formKey.currentState!.validate()) {
       final largo = largoText.text.toRegionalDouble();
       final altura = altoText.text.toRegionalDouble();
-      final base = baseText.text.toRegionalDouble();
-      final area = base * largo * altura;
+      final area = largo * altura;
 
       final desperdicio =
           (desperdicioText.text.toRegionalDouble() / 100.0.d).toDecimal();
@@ -407,7 +401,6 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
   void _reiniciarTodo() {
     largoText.clear();
     altoText.clear();
-    baseText.text = "1";
     desperdicioText.text = "3";
     proporcion = proporciones.last;
   }
