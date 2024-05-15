@@ -145,7 +145,60 @@ class _MamposteriaPiedraPageState extends State<MamposteriaPiedraPage>
     final priceProvider = PriceProvider.instance;
     final materialsItems = <ResultItem>[];
     // Materiales generales
+     if (proporcion == "1:3") {
+      // Proporción 1:5
     materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "PIEDRA",
+        unidad: "M3",
+        constante: 1.25.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.piedra,
+        ),
+      ),
+    );
+
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "CEMENTO PORTLAND TIPO 1",
+        unidad: "BOLSA",
+        constante: 3.41.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.cementoAlbanileriaTipoS,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "ARENA",
+        unidad: "m3",
+        constante: 0.32.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.arena,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "AGUA",
+        unidad: "L",
+        constante: 60.0.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.agua,
+        ),
+      ),
+    );
+      } else {
+      // Proporciones 1:4
+       materialsItems.add(
       MamposteriaBloqueResultModel(
         descripcion: "PIEDRA",
         unidad: "M3",
@@ -166,7 +219,7 @@ class _MamposteriaPiedraPageState extends State<MamposteriaPiedraPage>
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -194,6 +247,9 @@ class _MamposteriaPiedraPageState extends State<MamposteriaPiedraPage>
         ),
       ),
     );
+
+    }
+    
 
     final materiales = ResultDataForPdfModel(
       items: materialsItems,
