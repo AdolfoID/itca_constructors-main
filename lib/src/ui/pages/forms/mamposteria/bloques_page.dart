@@ -252,7 +252,7 @@ class _MamposteriaBloquesPageState extends State<MamposteriaBloquesPage>
         materialValor: solera,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoAlbanileriaTipoS,
+          PriceItem.bloqueSolera15x20x40,
         ),
       ),
     );
@@ -296,7 +296,7 @@ class _MamposteriaBloquesPageState extends State<MamposteriaBloquesPage>
 
     final materiales = ResultDataForPdfModel(
       items: materialsItems,
-      title: "MATERIALES DE BLOQUE 10X20X40",
+      title: "MATERIALES DE BLOQUE 15X20X40",
       titleBackColor: Colors.blue,
     );
 
@@ -358,7 +358,7 @@ class _MamposteriaBloquesPageState extends State<MamposteriaBloquesPage>
         materialValor: solera,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoAlbanileriaTipoS,
+          PriceItem.bloqueSolera20x20x40,
         ),
       ),
     );
