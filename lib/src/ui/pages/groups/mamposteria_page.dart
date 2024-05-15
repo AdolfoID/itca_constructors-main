@@ -19,25 +19,25 @@ class MamposteriaPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           ActionWidget(
-            title: "Muros de mamposteria de priedra",
+            title: "Muros de mamposteria de piedra",
             subtitle: "Cantidad de piedra, cemento, grava, arena y agua",
             image: image,
             onTap: () => _openPage(context, 0),
           ),
           ActionWidget(
-            title: "Mamposteria lad de lazo de canto",
+            title: "Mamposteria de ladrillos de puesto de lazo ",
             subtitle: "Cantidad de piedra, cemento, grava, arena y agua",
             image: image,
             onTap: () => _openPage(context, 1),
           ),
           ActionWidget(
-            title: "Mamposteria lad de canto",
+            title: "Mamposteria de ladrillos de lado de canto",
             subtitle: "Cantidad de piedra, cemento, grava, arena y agua",
             image: image,
             onTap: () => _openPage(context, 2),
           ),
           ActionWidget(
-            title: "Mamposteria lad p de trinchera",
+            title: "Mamposteria ladrillos de trinchera",
             subtitle: "Cantidad de piedra, cemento, grava, arena y agua",
             image: image,
             onTap: () => _openPage(context, 3),
@@ -79,7 +79,7 @@ class MamposteriaPage extends StatelessWidget {
         break;
       case 1:
         const page = MamposteriaLadrillosPage(
-          ladrillosType: LadrillosType.lazoDeCanto,
+          ladrillosType: LadrillosType.puestoDeLazo,
         );
         Navigator.push(
           context,
@@ -90,7 +90,7 @@ class MamposteriaPage extends StatelessWidget {
         break;
       case 2:
         const page = MamposteriaLadrillosPage(
-          ladrillosType: LadrillosType.ladoDeCanto,
+          ladrillosType: LadrillosType.lazoDeCanto,
         );
         Navigator.push(
           context,

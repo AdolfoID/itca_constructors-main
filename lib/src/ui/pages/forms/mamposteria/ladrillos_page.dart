@@ -17,7 +17,7 @@ import '../../../widgets/text_field_widget.dart';
 import '../../pdf_preview_page.dart';
 
 enum LadrillosType {
-  ladoDeCanto,
+  puestoDeLazo,
   lazoDeCanto,
   trinchera,
 }
@@ -52,7 +52,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
 
   List<String> get proporciones => [
         //if (widget.ladrillosType == LadrillosType.ladoDeCanto) "1:3",
-        if (widget.ladrillosType == LadrillosType.ladoDeCanto) "1:5",
+        if (widget.ladrillosType == LadrillosType.puestoDeLazo) "1:5",
         if (widget.ladrillosType == LadrillosType.trinchera ||
             widget.ladrillosType == LadrillosType.lazoDeCanto)
           "1:6",
@@ -60,12 +60,12 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
 
   String get title {
     switch (widget.ladrillosType) {
-      case LadrillosType.ladoDeCanto:
-        return "Mampostería de ladrillos de lado de canto";
-      case LadrillosType.trinchera:
-        return "Mampostería de ladrillos de trinchera";
+      case LadrillosType.puestoDeLazo:
+        return "Mampostería de ladrillos de puesto de lazo";
       case LadrillosType.lazoDeCanto:
-        return "Mampostería de ladrillos de puesto de canto";
+        return "Mampostería de ladrillos de lado de canto";
+        case LadrillosType.trinchera:
+        return "Mampostería de ladrillos de trinchera";
     }
   }
 
@@ -152,7 +152,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     );
   }
 
-  ResultDataForPdfModel lazoDeCanto_1_6({
+  ResultDataForPdfModel puestodelazo_1_6({
     required Decimal areaCalculo,
     required Decimal desperdicio,
   }) {
@@ -161,9 +161,9 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "Ladrillos",
+        descripcion: "LADRILLLOS",
         unidad: "UN",
-        constante: 25.0.d,
+        constante: 46.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
@@ -176,7 +176,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
       MamposteriaBloqueResultModel(
         descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
-        constante: 0.065.d,
+        constante: 0.13.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
@@ -218,7 +218,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     return materiales;
   }
 
-  ResultDataForPdfModel ladoDeCanto_1_5({
+  ResultDataForPdfModel lazoDeCanto_1_6({
     required Decimal areaCalculo,
     required Decimal desperdicio,
   }) {
@@ -227,13 +227,13 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "Ladrillos",
+        descripcion: "LADRILLOS",
         unidad: "UN",
         constante: 25.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrilloBarroCocido,
         ),
       ),
     );
@@ -293,13 +293,13 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "Ladrillos",
+        descripcion: "LADRILLOS",
         unidad: "UN",
         constante: 92.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrilloBarroCocido,
         ),
       ),
     );
@@ -374,8 +374,8 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
             desperdicio: desperdicio,
           );
           break;
-        case LadrillosType.ladoDeCanto:
-          materiales = ladoDeCanto_1_5(
+        case LadrillosType.puestoDeLazo:
+          materiales = puestodelazo_1_6(
             areaCalculo: area,
             desperdicio: desperdicio,
           );
