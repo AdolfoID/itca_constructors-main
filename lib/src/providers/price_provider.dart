@@ -29,6 +29,8 @@ enum PriceItem {
   acero3_4,
   acero7_8,
   acero1,
+  bloqueSolera10x20x40,
+  bloqueSolera15x20x40,
 }
 String toCamelCase(String str) {
   return str.toLowerCase().split(' ').map((word) {
@@ -174,7 +176,16 @@ class PriceProvider extends ChangeNotifier {
           }
         case PriceItem.ladrillo25x25: // LADRILLO DE CEMENTO 25X25
           if (!_prefs.containsKey(key)) {
-            _prefs.setString(key, "0.60");
+            _prefs.setString(key, "0.63");
+          }
+
+          case PriceItem.bloqueSolera10x20x40: // SOLERA 10X20X40
+          if (!_prefs.containsKey(key)) {
+            _prefs.setString(key, "0.63");
+          }
+           case PriceItem.bloqueSolera15x20x40: // SOLERA 15X20X40
+          if (!_prefs.containsKey(key)) {
+            _prefs.setString(key, "0.82");
           }
           break;
       }

@@ -154,7 +154,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrillo25x25,
         ),
       ),
     );
