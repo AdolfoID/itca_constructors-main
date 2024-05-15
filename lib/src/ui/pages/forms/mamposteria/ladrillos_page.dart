@@ -17,7 +17,7 @@ import '../../../widgets/text_field_widget.dart';
 import '../../pdf_preview_page.dart';
 
 enum LadrillosType {
-  ladoDeCanto,
+  puestoDeLazo,
   lazoDeCanto,
   trinchera,
 }
@@ -39,7 +39,6 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
   final formKey = GlobalKey<FormState>();
   final largoText = TextEditingController();
   final altoText = TextEditingController();
-  final baseText = TextEditingController();
 
   final desperdicioText = TextEditingController();
   String proporcion = '';
@@ -53,7 +52,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
 
   List<String> get proporciones => [
         //if (widget.ladrillosType == LadrillosType.ladoDeCanto) "1:3",
-        if (widget.ladrillosType == LadrillosType.ladoDeCanto) "1:5",
+        if (widget.ladrillosType == LadrillosType.puestoDeLazo) "1:5",
         if (widget.ladrillosType == LadrillosType.trinchera ||
             widget.ladrillosType == LadrillosType.lazoDeCanto)
           "1:6",
@@ -61,12 +60,12 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
 
   String get title {
     switch (widget.ladrillosType) {
-      case LadrillosType.ladoDeCanto:
-        return "Mampostería de ladrillos de lado de canto";
-      case LadrillosType.trinchera:
-        return "Mampostería de ladrillos de trinchera";
+      case LadrillosType.puestoDeLazo:
+        return "Mampostería de ladrillos de puesto de lazo";
       case LadrillosType.lazoDeCanto:
-        return "Mampostería de ladrillos de puesto de canto";
+        return "Mampostería de ladrillos de lado de canto";
+        case LadrillosType.trinchera:
+        return "Mampostería de ladrillos de trinchera";
     }
   }
 
@@ -102,10 +101,6 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
                     ),
                     child: Column(
                       children: [
-                        TextFieldWidget(
-                          label: "Base",
-                          controller: baseText,
-                        ),
                         TextFieldWidget(
                           label: "Altura",
                           controller: altoText,
@@ -157,7 +152,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     );
   }
 
-  ResultDataForPdfModel lazoDeCanto_1_6({
+  ResultDataForPdfModel puestodelazo_1_6({
     required Decimal areaCalculo,
     required Decimal desperdicio,
   }) {
@@ -166,26 +161,26 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "Ladrillos",
+        descripcion: "LADRILLLOS",
         unidad: "UN",
         constante: 46.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrilloBarroCocido,
         ),
       ),
     );
 
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO PORTLAND TIPO 1",
+        descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
         constante: 0.13.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -223,7 +218,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     return materiales;
   }
 
-  ResultDataForPdfModel ladoDeCanto_1_5({
+  ResultDataForPdfModel lazoDeCanto_1_6({
     required Decimal areaCalculo,
     required Decimal desperdicio,
   }) {
@@ -232,26 +227,26 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "Ladrillos",
+        descripcion: "LADRILLOS",
         unidad: "UN",
         constante: 25.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrilloBarroCocido,
         ),
       ),
     );
 
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO PORTLAND TIPO 1",
+        descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
         constante: 0.065.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -298,26 +293,26 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "Ladrillos",
+        descripcion: "LADRILLOS",
         unidad: "UN",
         constante: 92.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.piedra,
+          PriceItem.ladrilloBarroCocido,
         ),
       ),
     );
 
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO PORTLAND TIPO 1",
+        descripcion: "CEMENTO PORTLAND TIPO S",
         unidad: "BOLSA",
         constante: 0.385.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipo1,
+          PriceItem.cementoAlbanileriaTipoS,
         ),
       ),
     );
@@ -359,8 +354,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     if (formKey.currentState!.validate()) {
       final largo = largoText.text.toRegionalDouble();
       final altura = altoText.text.toRegionalDouble();
-      final base = baseText.text.toRegionalDouble();
-      final area = base * largo * altura;
+      final area = largo * altura;
 
       final desperdicio =
           (desperdicioText.text.toRegionalDouble() / 100.0.d).toDecimal();
@@ -380,8 +374,8 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
             desperdicio: desperdicio,
           );
           break;
-        case LadrillosType.ladoDeCanto:
-          materiales = ladoDeCanto_1_5(
+        case LadrillosType.puestoDeLazo:
+          materiales = puestodelazo_1_6(
             areaCalculo: area,
             desperdicio: desperdicio,
           );
@@ -407,7 +401,6 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
   void _reiniciarTodo() {
     largoText.clear();
     altoText.clear();
-    baseText.text = "1";
     desperdicioText.text = "3";
     proporcion = proporciones.last;
   }

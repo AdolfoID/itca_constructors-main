@@ -10,9 +10,9 @@ class ResultItem {
   ResultItem({
     required this.descripcion,
     required this.unidad,
-    required this.constante,
-    required this.materialValor,
-    required this.precioUnitario,
+    required this.constante, //cantidad m2
+    required this.materialValor, //cantidad de materiales 
+    required this.precioUnitario, 
   });
 
   Decimal get valor => constante * materialValor;
