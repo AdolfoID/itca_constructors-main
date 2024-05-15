@@ -45,7 +45,7 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     proporcion = proporciones.first;
   }
 
-  List<String> get proporciones => [ "1:5",
+  List<String> get proporciones => [ "1:3","1:4"
        
       ];
 
