@@ -45,13 +45,13 @@ class _MamposteriaLadrillosPageState extends State<MamposteriaLadrillosPage>
     proporcion = proporciones.first;
   }
 
-  List<String> get proporciones => [ "1:3",
+  List<String> get proporciones => [ "1:5",
        
       ];
 
   String get title {
     
-        return "Pared de mamposteria de ladrillo de obra puesta de lazo";
+        return "Pared de mamposteria de ladrillo de obra puesto de lazo";
    
   }
 
