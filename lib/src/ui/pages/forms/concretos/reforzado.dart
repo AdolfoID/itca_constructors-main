@@ -225,6 +225,72 @@ class _ContretoReforzadoPageState extends State<ContretoReforzadoPage>
       MamposteriaBloqueResultModel(
         descripcion: "CEMENTO TIPO GU",
         unidad: "BOLSA",
+        constante: 8.40.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.cementoTipoGU,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "ARENA",
+        unidad: "m3",
+        constante: 0.47.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.arena,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "GRAVA",
+        unidad: "m3",
+        constante: 0.71.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.grava,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "AGUA",
+        unidad: "L",
+        constante: 216.0.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.agua,
+        ),
+      ),
+    );
+
+    final materiales = ResultDataForPdfModel(
+      items: materialsItems,
+      title: title.toUpperCase(),
+      titleBackColor: Colors.blue,
+    );
+
+    return materiales;
+  }
+
+  ResultDataForPdfModel calcResistencia280({
+    required Decimal areaCalculo,
+    required Decimal desperdicio,
+  }) {
+    final priceProvider = PriceProvider.instance;
+    final materialsItems = <ResultItem>[];
+    // Materiales generales
+
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "CEMENTO TIPO GU",
+        unidad: "BOLSA",
         constante: 11.30.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
@@ -260,74 +326,8 @@ class _ContretoReforzadoPageState extends State<ContretoReforzadoPage>
     materialsItems.add(
       MamposteriaBloqueResultModel(
         descripcion: "AGUA",
-        unidad: "L",
-        constante: 221.0.d,
-        materialValor: areaCalculo,
-        desperdicioLadrillos: desperdicio,
-        precioUnitario: priceProvider.getPrice(
-          PriceItem.agua,
-        ),
-      ),
-    );
-
-    final materiales = ResultDataForPdfModel(
-      items: materialsItems,
-      title: title.toUpperCase(),
-      titleBackColor: Colors.blue,
-    );
-
-    return materiales;
-  }
-
-  ResultDataForPdfModel calcResistencia280({
-    required Decimal areaCalculo,
-    required Decimal desperdicio,
-  }) {
-    final priceProvider = PriceProvider.instance;
-    final materialsItems = <ResultItem>[];
-    // Materiales generales
-
-    materialsItems.add(
-      MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO TIPO GU",
-        unidad: "BOLSA",
-        constante: 18.48.d,
-        materialValor: areaCalculo,
-        desperdicioLadrillos: desperdicio,
-        precioUnitario: priceProvider.getPrice(
-          PriceItem.cementoTipoGU,
-        ),
-      ),
-    );
-    materialsItems.add(
-      MamposteriaBloqueResultModel(
-        descripcion: "ARENA",
-        unidad: "m3",
-        constante: 1.034.d,
-        materialValor: areaCalculo,
-        desperdicioLadrillos: desperdicio,
-        precioUnitario: priceProvider.getPrice(
-          PriceItem.arena,
-        ),
-      ),
-    );
-    materialsItems.add(
-      MamposteriaBloqueResultModel(
-        descripcion: "GRAVA",
-        unidad: "m3",
-        constante: 1.562.d,
-        materialValor: areaCalculo,
-        desperdicioLadrillos: desperdicio,
-        precioUnitario: priceProvider.getPrice(
-          PriceItem.grava,
-        ),
-      ),
-    );
-    materialsItems.add(
-      MamposteriaBloqueResultModel(
-        descripcion: "AGUA",
         unidad: "barril",
-        constante: 475.0.d,
+        constante: 221.0.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
