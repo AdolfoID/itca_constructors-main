@@ -48,7 +48,7 @@ class _RepelloCuadradosPageState extends State<RepelloCuadradosPage>
   }
 
   List<String> get proporciones => [
-        "1:2",
+        "1:5",
       ];
 
   String get title => widget.title;
