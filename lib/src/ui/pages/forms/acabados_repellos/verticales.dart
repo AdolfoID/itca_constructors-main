@@ -52,7 +52,7 @@ class _AcabadoSuperficiesVerticalespageState
   }
 
   List<String> get proporciones => [
-        "1:2",
+        "1:3","1:4"
       ];
 
   String get title => widget.title;
@@ -147,11 +147,13 @@ class _AcabadoSuperficiesVerticalespageState
     final priceProvider = PriceProvider.instance;
     final materialsItems = <ResultItem>[];
 
+    if (proporcion == "1:3") {
+      // Proporción 1:5
     materialsItems.add(
       MamposteriaBloqueResultModel(
-        descripcion: "CEMENTO ALBAÑILERÍA TIPO S",
+        descripcion: "CEMENTO PORTLAND TIPO 1",
         unidad: "BOLSA",
-        constante: 0.037.d,
+        constante: 0.250.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
@@ -163,7 +165,7 @@ class _AcabadoSuperficiesVerticalespageState
       MamposteriaBloqueResultModel(
         descripcion: "ARENA",
         unidad: "m3",
-        constante: 0.002.d,
+        constante: 0.026.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
@@ -175,7 +177,45 @@ class _AcabadoSuperficiesVerticalespageState
       MamposteriaBloqueResultModel(
         descripcion: "AGUA",
         unidad: "L",
-        constante: 5.50.d,
+        constante: 52.000.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.agua,
+        ),
+      ),
+    );
+      } else {
+      // Proporciones 1:4
+      materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "CEMENTO PORTLAND TIPO 1",
+        unidad: "BOLSA",
+        constante: 0.200.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.cementoAlbanileriaTipoS,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "ARENA",
+        unidad: "m3",
+        constante: 0.023.d,
+        materialValor: areaCalculo,
+        desperdicioLadrillos: desperdicio,
+        precioUnitario: priceProvider.getPrice(
+          PriceItem.arena,
+        ),
+      ),
+    );
+    materialsItems.add(
+      MamposteriaBloqueResultModel(
+        descripcion: "AGUA",
+        unidad: "L",
+        constante: 46.000.d,
         materialValor: areaCalculo,
         desperdicioLadrillos: desperdicio,
         precioUnitario: priceProvider.getPrice(
@@ -184,6 +224,7 @@ class _AcabadoSuperficiesVerticalespageState
       ),
     );
 
+    }
     final materiales = ResultDataForPdfModel(
       items: materialsItems,
       title: title.toUpperCase(),
