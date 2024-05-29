@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:itca_construction/src/ui/pages/forms/concretos/losa_reforzada.dart';
 import 'package:itca_construction/src/ui/pages/forms/concretos/reforzado.dart';
+import 'package:itca_construction/src/ui/pages/forms/concretos/zapata_aislada.dart';
 
 import '../../widgets/action_widget.dart';
 
@@ -103,7 +104,7 @@ class ConcretoPage extends StatelessWidget {
 
         break;
       case 4:
-        const page = LosaReforzadaPage(
+        const page = ZapataAisladaPage(
           title: "Zapata Aislada",
         );
         Navigator.push(
