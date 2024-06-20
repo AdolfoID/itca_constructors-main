@@ -37,29 +37,28 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
   final espesorText = TextEditingController();
   final desperdicioText = TextEditingController();
   String proporcion = '';
-  String tipoHierro = '';
+  String tipoAcero = '';
 
-   @override
+  @override
   void initState() {
     super.initState();
     _reiniciarTodo();
     proporcion = proporciones.first;
-    tipoHierro = tiposHierro.first;
+    tipoAcero = tiposAcero.first;
   }
 
   List<String> get proporciones => [
         "1:2:2",
       ];
 
-  List<String> get tiposHierro => [
-        "ACERO 1/4\"",
-        "ACERO 3/8\"",
-        "ACERO 1/2\"",
-        "ACERO 5/8\"",
-        "ACERO 3/4\"",
-        "ACERO 7/8\"",
-        "ACERO 1\"",
-        
+  List<String> get tiposAcero => [
+        "Acero 1/4\"",
+        "Acero 3/8\"",
+        "Acero 1/2\"",
+        "Acero 5/8\"",
+        "Acero 3/4\"",
+        "Acero 7/8\"",
+        "Acero 1\"",
       ];
 
   String get title => widget.title;
@@ -69,6 +68,12 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: _reiniciarTodo,
+            icon: const Icon(Icons.delete),
+          ),
+        ],
       ),
       body: Form(
         key: formKey,
@@ -85,40 +90,40 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Column(
-                    children: [
-                      TextFieldWidget(
-                        label: "Espesor",
-                        controller: espesorText,
-                      ),
-                      TextFieldWidget(
-                        label: "Ancho",
-                        controller: anchoText,
-                      ),
-                      TextFieldWidget(
-                        label: "Largo",
-                        controller: largoText,
-                      ),
-                       TextFieldWidget(
-                        label: "Desperdicio",
-                        controller: desperdicioText,
-                        suffixWidget: const Text("%"),
-                      ),
-                      FormDropdownWidget(
-                        title: "Tipo de Hierro",
-                        items: tiposHierro,
-                        value: tipoHierro,
-                        onChanged: (value) {
-                          setState(() => tipoHierro = value!);
-                        },
-                      ),
-                     
-                    ],
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Column(
+                      children: [
+                        TextFieldWidget(
+                          label: "Espesor",
+                          controller: espesorText,
+                        ),
+                        TextFieldWidget(
+                          label: "Ancho",
+                          controller: anchoText,
+                        ),
+                        TextFieldWidget(
+                          label: "Largo",
+                          controller: largoText,
+                        ),
+                        TextFieldWidget(
+                          label: "Ancho de varillas",
+                          controller: anchoVarillasText,
+                          suffixWidget: const Text("m"),
+                        ),
+                        TextFieldWidget(
+                          label: "Largo de varillas",
+                          controller: largoVarillasText,
+                          suffixWidget: const Text("m"),
+                        ),
+                        TextFieldWidget(
+                          label: "Desperdicio",
+                          controller: desperdicioText,
+                          suffixWidget: const Text("%"),
+                        ),
+                      ],
+                    )),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
@@ -131,6 +136,14 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
                         value: proporcion,
                         onChanged: (value) {
                           setState(() => proporcion = value!);
+                        },
+                      ),
+                      FormDropdownWidget(
+                        title: "Tipo de acero",
+                        items: tiposAcero,
+                        value: tipoAcero,
+                        onChanged: (value) {
+                          setState(() => tipoAcero = value!);
                         },
                       ),
                       const SizedBox(
@@ -154,16 +167,15 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
     );
   }
 
-
-   ResultDataForPdfModel calc({
+  ResultDataForPdfModel calc({
     required Decimal areaCalculo,
     required Decimal desperdicio,
     required Decimal totalVarillas,
   }) {
     final priceProvider = PriceProvider.instance;
     final materialsItems = <ResultItem>[];
-    // Materiales generales
 
+    // Materiales generales
     materialsItems.add(
       MamposteriaBloqueResultModel(
         descripcion: "CEMENTO TIPO GU",
@@ -213,6 +225,54 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
       ),
     );
 
+    // Tipo de acero
+    Decimal constanteAcero;
+    PriceItem priceItem;
+
+    switch (tipoAcero) {
+      case 'Acero 1/4"':
+        constanteAcero = 30.0.d;
+        priceItem = PriceItem.acero1_4;
+        break;
+      case 'Acero 3/8"':
+        constanteAcero = 13.60.d;
+        priceItem = PriceItem.acero3_8;
+        break;
+      case 'Acero 1/2"':
+        constanteAcero = 8.50.d;
+        priceItem = PriceItem.acero1_2;
+        break;
+      case 'Acero 5/8"':
+        constanteAcero = 4.87.d;
+        priceItem = PriceItem.acero5_8;
+        break;
+      case 'Acero 3/4"':
+        constanteAcero = 3.40.d;
+        priceItem = PriceItem.acero3_4;
+        break;
+      case 'Acero 7/8"':
+        constanteAcero = 2.50.d;
+        priceItem = PriceItem.acero7_8;
+        break;
+      case 'Acero 1"':
+        constanteAcero = 1.90.d;
+        priceItem = PriceItem.acero1;
+        break;
+      default:
+        constanteAcero = 30.0.d; // Default value
+        priceItem = PriceItem.acero1_4;
+    }
+
+    materialsItems.add(
+      VarillasResultModel(
+        descripcion: tipoAcero,
+        unidad: "qq",
+        constante: constanteAcero,
+        materialValor: totalVarillas,
+        precioUnitario: priceProvider.getPrice(priceItem),
+      ),
+    );
+
     final materiales = ResultDataForPdfModel(
       items: materialsItems,
       title: title.toUpperCase(),
@@ -222,60 +282,7 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
     return materiales;
   }
 
-  List<ResultDataForPdfModel> calcVarillas({
-    required Decimal areaCalculo,
-    required Decimal desperdicio,
-    required Decimal totalVarillas,
-  }) {
-    final priceProvider = PriceProvider.instance;
-    final materialsItems = <ResultItem>[];
-    // Materiales generales
-
-    materialsItems.add(
-      VarillasResultModel(
-        descripcion: tipoHierro,
-        unidad: "qq",
-      
-        constante: _getConstantForTipoHierro(tipoHierro),
-        materialValor: totalVarillas,
-        precioUnitario: priceProvider.getPrice(
-          PriceItem.acero1_4, 
-        ),
-      ),
-    );
-
-    final varillas = ResultDataForPdfModel(
-      items: materialsItems,
-      title: "${title.toUpperCase()}(Varillas)",
-      titleBackColor: Colors.blue,
-    );
-
-    return [varillas];
-  }
-
-  Decimal _getConstantForTipoHierro(String tipoHierro) {
-   
-    switch (tipoHierro) {
-      case "ACERO 1/4\"":
-        return 30.0.d;
-      case "ACERO 3/8\"":
-        return 13.60.d;
-      case "ACERO 1/2\"":
-        return 8.50.d;
-      case "ACERO 5/8\"":
-        return 4.87.d;
-      case "ACERO 3/4\"":
-        return 3.40.d;
-      case "ACERO 7/8\"":
-        return 2.50.d;
-      case "ACERO 1\"":
-        return 1.90.d;
-      default:
-        return Decimal.zero;
-    }
-  }
-
-   _calcular(BuildContext context) {
+  _calcular(BuildContext context) {
     if (formKey.currentState!.validate()) {
       final largo = largoText.text.toRegionalDouble();
       final ancho = anchoText.text.toRegionalDouble();
@@ -293,13 +300,8 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
           (desperdicioText.text.toRegionalDouble() / 100.0.d).toDecimal();
 
       final totalVarillas =
-          ((anchoVarillaTotal + largoVarillaTotal) / 0.6.d).toDecimal() *
+          ((anchoVarillaTotal + largoVarillaTotal) / 6.0.d).toDecimal() *
               (0.06.d + 1.0.d);
-      final varillas = calcVarillas(
-        areaCalculo: volumen,
-        desperdicio: desperdicio,
-        totalVarillas: totalVarillas,
-      );
       final page1 = [
         calc(
           areaCalculo: volumen,
@@ -310,7 +312,6 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
 
       final results = [
         PdfPageData(results: page1),
-        PdfPageData(results: varillas),
       ];
 
       Navigator.of(context).push(
@@ -329,7 +330,9 @@ class _LosaReforzadaPageState extends State<LosaReforzadaPage> with FormValidato
     anchoText.clear();
     anchoVarillasText.text = "0.1";
     largoVarillasText.text = "0.12";
-    espesorText.text = "0.20";
+    espesorText.text = "0.150";
     desperdicioText.text = "3";
+    proporcion = proporciones.first;
+    tipoAcero = tiposAcero.first;
   }
 }
